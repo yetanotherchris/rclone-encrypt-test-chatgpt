@@ -1,4 +1,4 @@
-# rclone-encrypt-test-chatgpt
+# rclone-encrypt-test-chatgpt-go
 A small CLI tool that encrypts and decrypts using the rclone encryption defaults.
 
 (Remove this details below for hardcore mode)
