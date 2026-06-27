@@ -1,4 +1,4 @@
-# rclone-encrypt-test-chatgpt-go
+# cli-chatgpt-go
 A small CLI tool that encrypts and decrypts using the rclone encryption defaults.
 
 (Remove this details below for hardcore mode)
@@ -18,14 +18,14 @@ Rclone encryption uses:
 
 **Homebrew (macOS/Linux)**
 ```bash
-brew tap yetanotherchris/rclone-encrypt-test-chatgpt https://github.com/yetanotherchris/rclone-encrypt-test-chatgpt
-brew install rclone-encrypt-test
+brew tap yetanotherchris/cli-chatgpt https://github.com/yetanotherchris/cli-chatgpt
+brew install cli
 ```
 
 **Scoop (Windows)**
 ```powershell
-scoop bucket add rclone-encrypt-test-chatgpt https://github.com/yetanotherchris/rclone-encrypt-test-chatgpt
-scoop install rclone-encrypt-test
+scoop bucket add cli-chatgpt https://github.com/yetanotherchris/cli-chatgpt
+scoop install cli
 ```
 
 ## Examples
@@ -35,7 +35,7 @@ scoop install rclone-encrypt-test
 The CLI prompts for a password and an optional salt (press Enter to use the built-in salt).
 
 ```bash
-rclone-encrypt-test encrypt -i TEST_FILE.txt
+cli encrypt -i TEST_FILE.txt
 ```
 
 Want to control the destination path? Use `-o` and the CLI will still print the encoded filename so you can track it.
@@ -45,8 +45,8 @@ Want to control the destination path? Use `-o` and the CLI will still print the 
 Filenames are encrypted with AES/EME and encoded using base32 by default. Use `--filename-encoding` to match the encoding if you stored the file name differently.
 
 ```bash
-rclone-encrypt-test decrypt -i kr9tu4e1da4u3nifdd99g9tf5o -o TEST_FILE.txt
-rclone-encrypt-test decrypt -i Iyxcijgc9bp3o5Y0npW6xqUvwWNcc3MA4SadB0sR6cY --filename-encoding base64 -o TEST_FILE.txt
+cli decrypt -i kr9tu4e1da4u3nifdd99g9tf5o -o TEST_FILE.txt
+cli decrypt -i Iyxcijgc9bp3o5Y0npW6xqUvwWNcc3MA4SadB0sR6cY --filename-encoding base64 -o TEST_FILE.txt
 ```
 
 ### Passing a password from the CLI
@@ -54,7 +54,7 @@ rclone-encrypt-test decrypt -i Iyxcijgc9bp3o5Y0npW6xqUvwWNcc3MA4SadB0sR6cY --fil
 For automation you can use `--password`, but the CLI prints a warning because the value may be visible in shell history or process lists. Prefer the `RCLONE_ENCRYPT_PASSWORD` environment variable or type the password when prompted.
 
 ```bash
-rclone-encrypt-test encrypt -i TEST_FILE.txt --password 'Testpassword1'
+cli encrypt -i TEST_FILE.txt --password 'Testpassword1'
 ```
 
 ## Environment variables
@@ -74,9 +74,9 @@ rclone-encrypt-test encrypt -i TEST_FILE.txt --password 'Testpassword1'
 Requires Go 1.25+. Clone this repository and build the binary directly.
 
 ```bash
-git clone https://github.com/yetanotherchris/rclone-encrypt-test-chatgpt
-cd rclone-encrypt-test-chatgpt
-go build -o rclone-encrypt-test .
+git clone https://github.com/yetanotherchris/cli-chatgpt
+cd cli-chatgpt
+go build -o cli .
 ```
 
 ## Testing
@@ -87,4 +87,4 @@ go test ./...
 
 ## Releases
 
-Pushing a `vX.Y.Z` tag triggers the [Build and Release workflow](.github/workflows/build-release.yml), which cross-compiles binaries for Linux (amd64/arm64), macOS (amd64/arm64), and Windows (amd64). The release job uploads the artifacts, creates a GitHub Release, and uses [`updatescoop.ps1`](updatescoop.ps1) plus [`updatebrew.ps1`](updatebrew.ps1) to refresh the Scoop manifest (`rclone-encrypt-test.json`) and Homebrew formula (`Formula/rclone-encrypt-test.rb`).
+Pushing a `vX.Y.Z` tag triggers the [Build and Release workflow](.github/workflows/build-release.yml), which cross-compiles binaries for Linux (amd64/arm64), macOS (amd64/arm64), and Windows (amd64). The release job uploads the artifacts, creates a GitHub Release, and uses [`updatescoop.ps1`](updatescoop.ps1) plus [`updatebrew.ps1`](updatebrew.ps1) to refresh the Scoop manifest (`cli.json`) and Homebrew formula (`Formula/cli.rb`).
